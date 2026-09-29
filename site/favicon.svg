@@ -1,6 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="8" fill="#14366b"/>
-  <rect x="14" y="34" width="8" height="18" fill="#fff"/>
-  <rect x="28" y="24" width="8" height="28" fill="#fff"/>
-  <rect x="42" y="14" width="8" height="38" fill="#fff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img"
+     aria-label="Building Beautifully">
+  <!-- An arch: the oldest sign that someone cared how a building met you.
+       Kept to one solid shape so it still reads at 16px in a browser tab. -->
+  <rect width="64" height="64" rx="10" fill="#8a4b2a"/>
+  <path d="M20 54 V30 a12 12 0 0 1 24 0 V54 Z" fill="#fbfaf7"/>
+  <rect x="13" y="54" width="38" height="5" rx="1.5" fill="#fbfaf7"/>
 </svg>
