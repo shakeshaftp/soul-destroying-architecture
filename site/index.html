@@ -27,20 +27,35 @@
 
 <style>
   :root{
-    --accent: #8a4b2a;
+    /* An icon palette: gold for the ground and the ornament, Marian blue for
+       everything that has to be read. The split is not decorative — gold on
+       paper manages only 2.3:1, far under the 4.5:1 text minimum, so it rules
+       lines and fills grounds while the blue carries the links. */
+    --accent: #c59a2b;
+    --accent-ink: #1f3a93;
     /* ink-3 is the tertiary grey: labels, building metadata, credits. It is
        held at #726a5d rather than anything lighter because the lighter warm
        greys drop under the 4.5:1 contrast minimum at these small sizes. */
     --paper:#fbfaf7; --ink:#1a1714; --ink-2:#5f594f; --ink-3:#726a5d;
     --rule:#e0dbd0; --panel:#f2efe8;
+    /* A gold wash for the pairing-note panel. A 2px gold rule on near-white
+       manages only 2.5:1 and all but disappears; carrying the colour as a
+       ground instead is both more visible and closer to what gold does in an
+       icon, where it is the field rather than the line. */
+    --panel-gold:#f1e2bd;
     --shadow: 0 1px 2px rgba(26,23,20,.08), 0 8px 24px -12px rgba(26,23,20,.18);
     color-scheme: light dark;
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --accent:#d59a6a;
+      /* Lightened counterparts. If you change accent or accent_ink in
+         config.json, change these two by eye to match — they are held here
+         rather than in config so the file a non-technical person opens has
+         two colours in it, not four. */
+      --accent:#d9b85c;
+      --accent-ink:#9ab4ec;
       --paper:#14120f; --ink:#f2eee6; --ink-2:#a8a094; --ink-3:#8a8478;
-      --rule:#2e2a24; --panel:#1d1a16;
+      --rule:#2e2a24; --panel:#1d1a16; --panel-gold:#2e2512;
       --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
     }
   }
@@ -53,7 +68,7 @@
   }
   .wrap{max-width:60rem; margin:0 auto; padding:0 1.25rem}
   .narrow{max-width:36rem}
-  a{color:var(--accent); text-underline-offset:.15em}
+  a{color:var(--accent-ink); text-underline-offset:.15em}
   a:hover{text-decoration-thickness:2px}
 
   .label{
@@ -88,7 +103,7 @@
   @media (min-width:56rem){ .case{grid-template-columns:repeat(3,1fr); gap:2.25rem} }
   .case h3{
     font-size:1.1rem; font-weight:600; margin:0 0 .4rem;
-    padding-top:.75rem; border-top:2px solid var(--accent);
+    padding-top:.75rem; border-top:3px solid var(--accent);
   }
   .case p{margin:0; color:var(--ink-2); font-size:.98rem}
 
@@ -119,7 +134,7 @@
 
   .stamp{display:inline-block; margin:.9rem 0 .35rem; padding-bottom:.3rem;
          border-bottom:2px solid var(--rule)}
-  .exemplar .stamp{border-bottom-color:var(--accent); color:var(--accent)}
+  .exemplar .stamp{border-bottom-color:var(--accent); color:var(--accent-ink)}
   figcaption b{display:block; font-size:1.05rem; font-weight:600; margin:.1rem 0 .15rem}
   figcaption .meta{color:var(--ink-3); font-size:.88rem; margin:0 0 .5rem}
   figcaption p.cap{margin:0; color:var(--ink-2); font-size:.95rem}
@@ -127,8 +142,8 @@
   .credit a{color:inherit}
 
   .why{
-    margin:1.5rem 0 0; padding:1rem 1.15rem; background:var(--panel);
-    border-left:2px solid var(--accent); font-size:.94rem; color:var(--ink-2);
+    margin:1.5rem 0 0; padding:1rem 1.15rem; background:var(--panel-gold);
+    border-left:3px solid var(--accent); font-size:.94rem; color:var(--ink-2);
   }
   .why b{color:var(--ink); font-weight:600}
 

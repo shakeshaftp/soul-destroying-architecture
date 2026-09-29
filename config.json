@@ -12,7 +12,8 @@
   "source_url": "https://github.com/shakeshaftp/soul-destroying-architecture",
   "method_note": "Each comparison pairs two buildings of the same use, at a similar scale, and — wherever possible — of a similar era and budget, so that the difference shown is a difference of design rather than of money, age, or upkeep. The pairing note on each comparison states the basis for that pairing. Photographs are chosen to show each building in fair conditions; where a building is widely photographed at its worst, we say so.",
 
-  "accent": "#8a4b2a",
+  "accent": "#c59a2b",
+  "accent_ink": "#1f3a93",
 
   "source_data_url": null,
   "label_column": "pair_id",

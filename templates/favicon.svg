@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img"
      aria-label="Building Beautifully">
-  <!-- A gateway: an arched opening cut into a wall. Deliberately wider than
-       it is tall, and read as a portal rather than a single standing shape.
-       The motif is common to Roman, Islamic and Mughal building alike, so it
-       does not tie the project to one tradition. Kept to two flat colours so
-       it still resolves at 16px in a browser tab. -->
-  <rect width="64" height="64" rx="10" fill="#8a4b2a"/>
-  <path fill="#fbfaf7"
+  <!-- An icon palette: a gold ground with a Marian blue gateway standing on
+       it, the arched opening letting the gold through. The gateway is wider
+       than it is tall and reads as a portal; the motif is common to Roman,
+       Islamic and Mughal building alike, so it does not tie the project to a
+       single tradition. Two flat colours, so it still resolves at 16px. -->
+  <rect width="64" height="64" rx="10" fill="#c59a2b"/>
+  <path fill="#1f3a93"
         d="M8 54 V16 H56 V54 H42 V42 a10 10 0 0 0 -20 0 V54 Z"/>
 </svg>
