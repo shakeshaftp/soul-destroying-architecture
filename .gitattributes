@@ -1,0 +1,12 @@
+# The pipeline writes LF, and the daily job compares its output against what
+# is committed. If the working tree used CRLF on Windows and LF on the Linux
+# runner, that comparison would differ by line ending alone and the job would
+# commit every morning again. Pin it everywhere.
+* text=auto eol=lf
+
+# Photographs and preview images are not text.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.webp binary
+*.avif binary

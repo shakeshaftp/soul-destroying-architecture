@@ -13,6 +13,10 @@ TEMPLATES = ROOT / "templates"
 # GitHub Actions runs on Linux and would not have shown you the problem.
 ENCODING = "utf-8"
 
+# Line ending for everything this pipeline writes. Pinned so that a run on a
+# Windows laptop and a run on the Linux CI runner produce identical bytes.
+NEWLINE = "\n"
+
 
 def load_config():
     with open(ROOT / "config.json", encoding=ENCODING) as f:
@@ -21,7 +25,10 @@ def load_config():
 
 def write_json(path, obj):
     path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w", encoding=ENCODING) as f:
+    # NEWLINE stops Windows translating to CRLF. The daily job compares this
+    # file against the committed one byte for byte, so the two platforms have
+    # to agree on line endings.
+    with open(path, "w", encoding=ENCODING, newline=NEWLINE) as f:
         json.dump(obj, f, indent=2, ensure_ascii=False)
 
 

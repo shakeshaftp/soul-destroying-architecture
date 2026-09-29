@@ -14,7 +14,8 @@ import shutil
 import pandas as pd
 from jinja2 import Template
 
-from common import DATA, ENCODING, SITE, TEMPLATES, images_dir, load_config
+from common import (DATA, ENCODING, NEWLINE, SITE, TEMPLATES, images_dir,
+                    load_config)
 
 
 def to_pairs(df):
@@ -64,13 +65,15 @@ def build():
     )
 
     SITE.mkdir(exist_ok=True)
-    (SITE / "index.html").write_text(html, encoding=ENCODING)
+    with open(SITE / "index.html", "w", encoding=ENCODING, newline=NEWLINE) as f:
+        f.write(html)
 
     # GitHub Pages reads CNAME from the uploaded artifact. Without it, a
     # redeploy can drop the custom domain set in the repository settings.
     cname = SITE / "CNAME"
     if domain:
-        cname.write_text(domain + "\n", encoding=ENCODING)
+        with open(cname, "w", encoding=ENCODING, newline=NEWLINE) as f:
+            f.write(domain + NEWLINE)
     elif cname.exists():
         cname.unlink()
 
