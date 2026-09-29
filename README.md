@@ -96,10 +96,14 @@ metadata pass.
 
 ### Custom domain
 
+The domain is **`buildingbeautifully.org`** — see [docs/domain.md](docs/domain.md)
+for why, and for the state of the `.com`.
+
 Do these in order. Setting the domain in GitHub before DNS resolves takes the
 site offline until it propagates.
 
-1. **Register the domain**, and at the registrar add these records:
+1. **Register `buildingbeautifully.org`**, and at the registrar add these
+   records:
 
    | Type | Name | Value |
    | --- | --- | --- |
@@ -133,5 +137,8 @@ site offline until it propagates.
 ## Still to do
 
 - Source and clear the twelve photographs.
-- Confirm the facts flagged in the catalogue (see the project notes).
-- Decide the public URL — a custom domain is reimbursable.
+- Confirm the facts flagged in [docs/catalogue-notes.md](docs/catalogue-notes.md).
+- Register `buildingbeautifully.org` and point DNS at Pages, then set
+  `custom_domain`. See [docs/domain.md](docs/domain.md).
+- Backorder `buildingbeautifully.com` in mid-December 2026.
+- Run `/publish` for the favicon and the 1200×630 preview image.
