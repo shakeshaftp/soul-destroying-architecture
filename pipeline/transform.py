@@ -11,6 +11,7 @@ its rows, orders the set, and records provenance. It must produce:
   data/site_data.csv   the published catalogue, one row per building
   data/meta.json       counts, update date, and provenance for the footer
 """
+import hashlib
 import json
 from datetime import datetime, timezone
 
@@ -51,32 +52,50 @@ def transform():
     df = df.sort_values(["_pair", "_role"]).drop(columns=["_pair", "_role"])
     # ---------------------------------------------------------------------
 
+    # Serialise before writing, so we can tell whether anything actually
+    # changed. "\n" is forced so a run here and a run on the Linux CI runner
+    # produce byte-identical output.
     out = DATA / "site_data.csv"
-    df.to_csv(out, index=False, encoding=ENCODING)
+    new_csv = df.to_csv(index=False, lineterminator="\n")
+    with open(out, "w", encoding=ENCODING, newline="") as f:
+        f.write(new_csv)
 
     # Which photographs are actually in place, and which are still to come.
     imgs = images_dir(cfg)
     have = df["image_file"].apply(lambda f: bool(f) and (imgs / f).exists())
 
-    now = datetime.now(timezone.utc)
-
-    # Read the previous count before overwriting meta.json, so validate_data
-    # has something real to compare today's run against.
+    # Read the previous run before overwriting it. validate_data needs the old
+    # row count to compare against, and the date below needs the old date.
     meta_path = DATA / "meta.json"
-    previous = None
+    old = {}
     if meta_path.exists():
-        previous = json.loads(meta_path.read_text(encoding=ENCODING)).get("rows")
+        old = json.loads(meta_path.read_text(encoding=ENCODING))
+
+    # "Last updated" should mean the day the catalogue changed, not the day a
+    # cron job happened to fire. This is a curated set, so most mornings
+    # nothing will have changed — advancing the date anyway would put a
+    # misleading line in the footer and commit an empty diff every single day.
+    fingerprint = hashlib.sha256(
+        f"{new_csv}|images:{int(have.sum())}".encode("utf-8")).hexdigest()
+
+    now = datetime.now(timezone.utc)
+    if fingerprint == old.get("fingerprint") and old.get("updated"):
+        updated, updated_iso = old["updated"], old["updated_iso"]
+    else:
+        updated = f"{now:%B} {now.day}, {now:%Y}"
+        updated_iso = now.isoformat(timespec="seconds")
 
     write_json(meta_path, {
         "rows": int(len(df)),
-        "previous_rows": previous,
+        "previous_rows": old.get("rows"),
+        "fingerprint": fingerprint,
         "pairs": int(df["pair_id"].nunique()),
         "countries": int(df["country"].nunique()),
         "traditions": int(df["tradition"].nunique()),
         "images_present": int(have.sum()),
         "images_missing": int((~have).sum()),
-        "updated": f"{now:%B} {now.day}, {now:%Y}",
-        "updated_iso": now.isoformat(timespec="seconds"),
+        "updated": updated,
+        "updated_iso": updated_iso,
         "source_name": cfg["source_name"],
         "source_url": cfg["source_url"],
     })
