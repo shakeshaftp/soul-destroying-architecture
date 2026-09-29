@@ -41,6 +41,14 @@ def build():
                      keep_default_na=False, encoding=ENCODING)
     meta = json.loads((DATA / "meta.json").read_text(encoding=ENCODING))
 
+    # One setting drives the custom domain. Filling in "custom_domain" in
+    # config.json makes it the canonical address everywhere — the <link
+    # rel=canonical>, the Open Graph URLs, and the CNAME file GitHub Pages
+    # needs in the artifact. Leave it empty and the site stays on github.io.
+    domain = cfg.get("custom_domain", "").strip().lstrip("@").rstrip("/")
+    if domain:
+        cfg["site_url"] = f"https://{domain}"
+
     pairs = to_pairs(df)
 
     html = Template(
@@ -57,6 +65,14 @@ def build():
 
     SITE.mkdir(exist_ok=True)
     (SITE / "index.html").write_text(html, encoding=ENCODING)
+
+    # GitHub Pages reads CNAME from the uploaded artifact. Without it, a
+    # redeploy can drop the custom domain set in the repository settings.
+    cname = SITE / "CNAME"
+    if domain:
+        cname.write_text(domain + "\n", encoding=ENCODING)
+    elif cname.exists():
+        cname.unlink()
 
     # The raw catalogue, downloadable from the site.
     shutil.copy(DATA / "site_data.csv", SITE / "data.csv")

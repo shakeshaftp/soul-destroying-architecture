@@ -94,6 +94,42 @@ tab does not mean anything is broken.
 Run `/publish` before the site is shared, for the favicon, preview image and
 metadata pass.
 
+### Custom domain
+
+Do these in order. Setting the domain in GitHub before DNS resolves takes the
+site offline until it propagates.
+
+1. **Register the domain**, and at the registrar add these records:
+
+   | Type | Name | Value |
+   | --- | --- | --- |
+   | A | `@` | `185.199.108.153` |
+   | A | `@` | `185.199.109.153` |
+   | A | `@` | `185.199.110.153` |
+   | A | `@` | `185.199.111.153` |
+   | AAAA | `@` | `2606:50c0:8000::153` |
+   | AAAA | `@` | `2606:50c0:8001::153` |
+   | AAAA | `@` | `2606:50c0:8002::153` |
+   | AAAA | `@` | `2606:50c0:8003::153` |
+   | CNAME | `www` | `shakeshaftp.github.io.` |
+
+2. **Wait for DNS to resolve.** `nslookup buildingbeautifully.org` should
+   return the four A records above.
+
+3. **Set `custom_domain` in `config.json`** to the bare domain, no `https://`
+   and no trailing slash. That one setting writes `site/CNAME` and switches
+   the canonical and Open Graph URLs over.
+
+4. **Tell GitHub**, then push:
+
+   ```bash
+   gh api -X PUT repos/shakeshaftp/soul-destroying-architecture/pages \
+     -f cname=buildingbeautifully.org -F https_enforced=true
+   ```
+
+5. **Settings → Pages → Enforce HTTPS** once the certificate is issued, which
+   takes up to an hour. Until then the site is served over HTTP only.
+
 ## Still to do
 
 - Source and clear the twelve photographs.
