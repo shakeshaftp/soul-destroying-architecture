@@ -8,10 +8,11 @@ the MI data-site template and lives in the author's own GitHub account.
 
 ```
 config.json           every setting a person edits by hand
-data/source.csv       the committed starting dataset
+data/source.csv       the committed catalogue — one row per building
 data/site_data.csv    generated — what the site actually shows
 data/meta.json        generated — row count, update date, provenance
 data/raw/             gitignored scratch space for downloads
+images/               the photographs — committed, each credited and licensed
 pipeline/fetch.py     step 1 — get the raw data
 pipeline/transform.py step 2 — clean and shape it (most work happens here)
 pipeline/validate_data.py  step 3 — refuse to publish something broken
@@ -33,6 +34,11 @@ Run everything with `python pipeline/run_update.py`.
   it in a script.
 - **Add a validation check whenever you find a new way the data can be wrong.**
   A failing pipeline that keeps yesterday's good site is the desired behavior.
+- **The catalogue is one row per building; two rows sharing a `pair_id` make
+  one comparison.** See README.md for the columns. Every pair carries a
+  `pairing_note` saying why the two buildings are a fair comparison, and
+  validation refuses to publish a pair without one — that note is the
+  project's defence against the charge of cherry-picking, not decoration.
 - Prefer stdlib and the three libraries already in `requirements.txt`. Ask
   before adding a dependency.
 

@@ -1,7 +1,13 @@
 {
-  "rows": 10,
+  "rows": 12,
+  "previous_rows": 12,
+  "pairs": 6,
+  "countries": 6,
+  "traditions": 10,
+  "images_present": 0,
+  "images_missing": 12,
   "updated": "September 29, 2026",
-  "updated_iso": "2026-09-29T18:01:57+00:00",
-  "source_name": "Name of the dataset",
-  "source_url": "https://example.org/the-dataset"
+  "updated_iso": "2026-09-29T18:41:33+00:00",
+  "source_name": "Building Beautifully comparison set",
+  "source_url": "https://github.com/shakeshaftp/soul-destroying-architecture"
 }

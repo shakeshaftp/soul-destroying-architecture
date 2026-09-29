@@ -1,14 +1,42 @@
 {
-  "title": "Project title goes here",
-  "headline": "The one sentence someone should remember",
-  "description": "One sentence, under 160 characters, for search results and link previews.",
-  "site_url": "https://example.manhattan.institute",
-  "source_name": "Name of the dataset",
-  "source_url": "https://example.org/the-dataset",
-  "method_note": "What was counted, what was excluded, and what these numbers cannot show.",
-  "author": "Your name",
-  "accent": "#14366b",
+  "title": "Building Beautifully",
+  "headline": "We know which buildings people love. We keep building the other kind.",
+  "description": "A project of the Manhattan Institute on beauty in the built environment: why it matters for wellbeing, for housing supply, and for the environment.",
+  "site_url": "https://shakeshaftp.github.io/soul-destroying-architecture",
+  "author": "Paul Shakeshaft and John Ketcham",
+  "organisation": "Manhattan Institute",
+  "contact_email": "",
+
+  "source_name": "Building Beautifully comparison set",
+  "source_url": "https://github.com/shakeshaftp/soul-destroying-architecture",
+  "method_note": "Each comparison pairs two buildings of the same use, at a similar scale, and — wherever possible — of a similar era and budget, so that the difference shown is a difference of design rather than of money, age, or upkeep. The pairing note on each comparison states the basis for that pairing. Photographs are chosen to show each building in fair conditions; where a building is widely photographed at its worst, we say so.",
+
+  "accent": "#8a4b2a",
+
   "source_data_url": null,
-  "value_column": "value",
-  "label_column": "label"
+  "label_column": "pair_id",
+  "images_dir": "images",
+
+  "allowed_licences": [
+    "Public domain",
+    "CC0",
+    "CC BY 2.0",
+    "CC BY 3.0",
+    "CC BY 4.0",
+    "CC BY-SA 2.0",
+    "CC BY-SA 3.0",
+    "CC BY-SA 4.0",
+    "Own photograph",
+    "Used with permission"
+  ],
+
+  "writing": [
+    {
+      "title": "Architecture, Beauty, and Liberal Regulation",
+      "outlet": "City Journal",
+      "url": "https://www.city-journal.org/article/architecture-beauty-liberal-regulation",
+      "author": "Paul Shakeshaft",
+      "date": ""
+    }
+  ]
 }

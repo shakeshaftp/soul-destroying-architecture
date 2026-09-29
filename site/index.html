@@ -4,172 +4,459 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Project title goes here</title>
-<meta name="description" content="One sentence, under 160 characters, for search results and link previews.">
-<link rel="canonical" href="https://example.manhattan.institute/">
+<title>Building Beautifully — Manhattan Institute</title>
+<meta name="description" content="A project of the Manhattan Institute on beauty in the built environment: why it matters for wellbeing, for housing supply, and for the environment.">
+<link rel="canonical" href="https://shakeshaftp.github.io/soul-destroying-architecture/">
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://example.manhattan.institute/">
-<meta property="og:title" content="The one sentence someone should remember">
-<meta property="og:description" content="One sentence, under 160 characters, for search results and link previews.">
-<meta property="og:image" content="https://example.manhattan.institute/preview.png">
+<meta property="og:site_name" content="Building Beautifully">
+<meta property="og:url" content="https://shakeshaftp.github.io/soul-destroying-architecture/">
+<meta property="og:title" content="We know which buildings people love. We keep building the other kind.">
+<meta property="og:description" content="A project of the Manhattan Institute on beauty in the built environment: why it matters for wellbeing, for housing supply, and for the environment.">
+<meta property="og:image" content="https://shakeshaftp.github.io/soul-destroying-architecture/preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --accent: #14366b;
-    --paper:#fff; --ink:#111; --ink-2:#56544e; --rule:#e2e0d9; --bar:#e8e6df;
+    --accent: #8a4b2a;
+    --paper:#fbfaf7; --ink:#1a1714; --ink-2:#5f594f; --ink-3:#8a8276;
+    --rule:#e0dbd0; --panel:#f2efe8;
+    --shadow: 0 1px 2px rgba(26,23,20,.08), 0 8px 24px -12px rgba(26,23,20,.18);
     color-scheme: light dark;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --paper:#12121a; --ink:#f0eee8; --ink-2:#a8a49a; --rule:#2e2d35; --bar:#24242e; }
+    :root{
+      --accent:#d59a6a;
+      --paper:#14120f; --ink:#f2eee6; --ink-2:#a8a094; --ink-3:#7d766a;
+      --rule:#2e2a24; --panel:#1d1a16;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
   }
   *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
   body{
     margin:0; background:var(--paper); color:var(--ink);
-    font: 17px/1.55 ui-serif, Georgia, "Times New Roman", serif;
+    font:400 19px/1.6 "EB Garamond", ui-serif, Georgia, "Times New Roman", serif;
+    text-rendering:optimizeLegibility;
   }
-  .wrap{max-width:52rem; margin:0 auto; padding:3rem 1.25rem 5rem}
-  header{border-bottom:2px solid var(--ink); padding-bottom:1rem; margin-bottom:2rem}
-  h1{font-size:clamp(1.8rem,5vw,2.6rem); line-height:1.1; margin:0 0 .5rem}
-  .standfirst{margin:0; color:var(--ink-2); max-width:34rem}
-  h2{font-size:1.2rem; margin:2.5rem 0 .75rem}
-  a{color:var(--accent)}
-  @media (prefers-color-scheme: dark){ a{color:#9fc0f2} }
+  .wrap{max-width:60rem; margin:0 auto; padding:0 1.25rem}
+  .narrow{max-width:36rem}
+  a{color:var(--accent); text-underline-offset:.15em}
+  a:hover{text-decoration-thickness:2px}
 
-  .chart{margin:1.5rem 0; display:grid; gap:.4rem}
-  .row{display:grid; grid-template-columns:minmax(6rem,10rem) 1fr auto; gap:.6rem; align-items:center}
-  .row .name{font-size:.9rem; color:var(--ink-2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-  .track{background:var(--bar); height:1.4rem; position:relative}
-  .fill{background:var(--accent); height:100%}
-  .num{font-variant-numeric:tabular-nums; font-size:.9rem}
+  .label{
+    font:600 .7rem/1.3 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    text-transform:uppercase; letter-spacing:.11em; color:var(--ink-3);
+  }
 
-  .scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
-  table{border-collapse:collapse; width:100%; font-size:.92rem; min-width:30rem}
-  th,td{text-align:left; padding:.5rem .7rem; border-bottom:1px solid var(--rule)}
-  th{font-size:.78rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-2)}
-  td:not(:first-child){font-variant-numeric:tabular-nums}
+  /* ---- masthead ---- */
+  .masthead{border-bottom:1px solid var(--rule); padding:1.1rem 0}
+  .masthead .wrap{display:flex; gap:.6rem; align-items:baseline; flex-wrap:wrap}
+  .masthead b{font-weight:600; letter-spacing:.01em}
+  .masthead span{color:var(--ink-3); font-size:.88rem}
 
-  footer{margin-top:3.5rem; border-top:1px solid var(--rule); padding-top:1rem; font-size:.88rem; color:var(--ink-2)}
-  footer p{margin:.4rem 0; max-width:34rem}
-  .dl{display:inline-block; margin-top:.5rem; font-size:.9rem}
+  header.hero{padding:4rem 0 2.5rem}
+  h1{
+    font-size:clamp(2rem,5.5vw,3.4rem); line-height:1.08; margin:0 0 1rem;
+    font-weight:500; letter-spacing:-.01em; max-width:20ch;
+  }
+  .standfirst{margin:0; font-size:clamp(1.05rem,2.2vw,1.25rem); color:var(--ink-2); max-width:44ch}
+  .byline{margin:1.75rem 0 0; font-size:.95rem; color:var(--ink-3)}
+
+  h2{
+    font-size:clamp(1.4rem,3vw,1.9rem); font-weight:500; line-height:1.15;
+    margin:0 0 1.25rem; letter-spacing:-.005em;
+  }
+  section{padding:3.25rem 0; border-top:1px solid var(--rule)}
+  .section-label{margin:0 0 .9rem}
+  .lede{color:var(--ink-2)}
+
+  /* ---- the case ---- */
+  .case{display:grid; gap:1.75rem; margin:2rem 0 0}
+  @media (min-width:56rem){ .case{grid-template-columns:repeat(3,1fr); gap:2.25rem} }
+  .case h3{
+    font-size:1.1rem; font-weight:600; margin:0 0 .4rem;
+    padding-top:.75rem; border-top:2px solid var(--accent);
+  }
+  .case p{margin:0; color:var(--ink-2); font-size:.98rem}
+
+  /* ---- comparisons ---- */
+  .pair{padding:2.5rem 0; border-top:1px dotted var(--rule)}
+  .pair:first-of-type{border-top:0}
+  .pair-head{display:flex; gap:.75rem; align-items:baseline; margin-bottom:1.1rem}
+  .pair-head h3{font-size:1.15rem; font-weight:600; margin:0}
+  .pair-head .count{margin-left:auto; font-variant-numeric:tabular-nums}
+
+  .two{display:grid; gap:1.5rem}
+  @media (min-width:44rem){ .two{grid-template-columns:1fr 1fr; gap:1.75rem} }
+
+  figure{margin:0}
+  figure img{
+    display:block; width:100%; aspect-ratio:4/3; object-fit:cover;
+    background:var(--panel); box-shadow:var(--shadow);
+  }
+  .gap{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; gap:.5rem; width:100%; aspect-ratio:4/3; padding:1rem;
+    background:
+      repeating-linear-gradient(45deg, transparent 0 9px, var(--rule) 9px 10px),
+      var(--panel);
+    color:var(--ink-3);
+  }
+  .gap b{font:600 .95rem/1.3 "EB Garamond",Georgia,serif; color:var(--ink-2)}
+
+  .stamp{display:inline-block; margin:.9rem 0 .35rem; padding-bottom:.3rem;
+         border-bottom:2px solid var(--rule)}
+  .exemplar .stamp{border-bottom-color:var(--accent); color:var(--accent)}
+  figcaption b{display:block; font-size:1.05rem; font-weight:600; margin:.1rem 0 .15rem}
+  figcaption .meta{color:var(--ink-3); font-size:.88rem; margin:0 0 .5rem}
+  figcaption p.cap{margin:0; color:var(--ink-2); font-size:.95rem}
+  .credit{margin:.6rem 0 0; font-size:.78rem; color:var(--ink-3); line-height:1.45}
+  .credit a{color:inherit}
+
+  .why{
+    margin:1.5rem 0 0; padding:1rem 1.15rem; background:var(--panel);
+    border-left:2px solid var(--accent); font-size:.94rem; color:var(--ink-2);
+  }
+  .why b{color:var(--ink); font-weight:600}
+
+  /* ---- writing ---- */
+  ul.writing{list-style:none; margin:1.5rem 0 0; padding:0}
+  ul.writing li{padding:1rem 0; border-top:1px solid var(--rule)}
+  ul.writing a{font-size:1.1rem; font-weight:500; text-decoration-thickness:1px}
+  ul.writing .meta{display:block; color:var(--ink-3); font-size:.88rem; margin-top:.2rem}
+
+  /* ---- footer ---- */
+  footer{border-top:2px solid var(--ink); margin-top:1rem; padding:1.5rem 0 4rem;
+         font-size:.9rem; color:var(--ink-2)}
+  footer p{margin:.55rem 0; max-width:60ch}
+  footer .dl{display:inline-block; margin-top:.9rem; font-weight:500}
+  .tally{font-variant-numeric:tabular-nums}
+
+  @media print{ .gap{border:1px solid #999} }
 </style>
 </head>
 <body>
+
+<div class="masthead">
+  <div class="wrap">
+    <b>Building Beautifully</b>
+    <span>A project of the Manhattan Institute</span>
+  </div>
+</div>
+
 <div class="wrap">
 
-  <header>
-    <h1>The one sentence someone should remember</h1>
-    <p class="standfirst">One sentence, under 160 characters, for search results and link previews.</p>
+  <header class="hero">
+    <h1>We know which buildings people love. We keep building the other kind.</h1>
+    <p class="standfirst">A project of the Manhattan Institute on beauty in the built environment: why it matters for wellbeing, for housing supply, and for the environment.</p>
+    <p class="byline">Paul Shakeshaft and John Ketcham</p>
   </header>
 
-  <h2>Value by label</h2>
-  <div class="chart">
-    
-    <div class="row">
-      <span class="name">California</span>
-      <span class="track"><span class="fill" style="width: 100.0%"></span></span>
-      <span class="num">1,204</span>
+  <!-- ===== THE ARGUMENT — plain prose, edit it freely ===== -->
+  <section>
+    <p class="label section-label">Why it matters</p>
+    <h2 class="narrow">Beauty is not a finishing touch. It decides what gets built at all.</h2>
+    <div class="case">
+      <div>
+        <h3>Wellbeing</h3>
+        <p>People do not merely prefer beautiful places, they behave differently
+        in them. A street worth walking down is walked down. And the buildings
+        we put up outlast almost every other decision a city makes.</p>
+      </div>
+      <div>
+        <h3>Housing</h3>
+        <p>A good deal of what gets called NIMBYism is a reasonable objection to
+        ugliness. Neighbours shown something worth having are far readier to
+        accept density — which is how young and working families get a foot on
+        the ladder.</p>
+      </div>
+      <div>
+        <h3>Environment</h3>
+        <p>The greenest building is the one nobody wants to demolish. Beauty
+        earns a building the affection that keeps it standing, maintained and
+        adapted, instead of replaced every forty years.</p>
+      </div>
     </div>
-    
-    <div class="row">
-      <span class="name">Florida</span>
-      <span class="track"><span class="fill" style="width: 81.6%"></span></span>
-      <span class="num">982</span>
-    </div>
-    
-    <div class="row">
-      <span class="name">Georgia</span>
-      <span class="track"><span class="fill" style="width: 42.4%"></span></span>
-      <span class="num">511</span>
-    </div>
-    
-    <div class="row">
-      <span class="name">Arizona</span>
-      <span class="track"><span class="fill" style="width: 26.4%"></span></span>
-      <span class="num">318</span>
-    </div>
-    
-    <div class="row">
-      <span class="name">Colorado</span>
-      <span class="track"><span class="fill" style="width: 22.0%"></span></span>
-      <span class="num">265</span>
-    </div>
-    
-    <div class="row">
-      <span class="name">Alabama</span>
-      <span class="track"><span class="fill" style="width: 11.8%"></span></span>
-      <span class="num">142</span>
-    </div>
-    
-    <div class="row">
-      <span class="name">Connecticut</span>
-      <span class="track"><span class="fill" style="width: 9.8%"></span></span>
-      <span class="num">118</span>
-    </div>
-    
-    <div class="row">
-      <span class="name">Arkansas</span>
-      <span class="track"><span class="fill" style="width: 8.1%"></span></span>
-      <span class="num">97</span>
-    </div>
-    
-    <div class="row">
-      <span class="name">Delaware</span>
-      <span class="track"><span class="fill" style="width: 3.7%"></span></span>
-      <span class="num">44</span>
-    </div>
-    
-    <div class="row">
-      <span class="name">Alaska</span>
-      <span class="track"><span class="fill" style="width: 2.6%"></span></span>
-      <span class="num">31</span>
-    </div>
-    
-  </div>
+  </section>
 
-  <h2>The data</h2>
-  <div class="scroll">
-    <table>
-      <thead>
-        <tr><th>label</th><th>value</th><th>year</th></tr>
-      </thead>
-      <tbody>
-        
-        <tr><td>California</td><td>1204</td><td>2025</td></tr>
-        
-        <tr><td>Florida</td><td>982</td><td>2025</td></tr>
-        
-        <tr><td>Georgia</td><td>511</td><td>2025</td></tr>
-        
-        <tr><td>Arizona</td><td>318</td><td>2025</td></tr>
-        
-        <tr><td>Colorado</td><td>265</td><td>2025</td></tr>
-        
-        <tr><td>Alabama</td><td>142</td><td>2025</td></tr>
-        
-        <tr><td>Connecticut</td><td>118</td><td>2025</td></tr>
-        
-        <tr><td>Arkansas</td><td>97</td><td>2025</td></tr>
-        
-        <tr><td>Delaware</td><td>44</td><td>2025</td></tr>
-        
-        <tr><td>Alaska</td><td>31</td><td>2025</td></tr>
-        
-      </tbody>
-    </table>
-  </div>
+  <!-- ===== THE COMPARISONS — generated from data/source.csv ===== -->
+  <section>
+    <p class="label section-label">The comparisons</p>
+    <h2 class="narrow">Not old against new. Loved against unloved.</h2>
+    <p class="narrow lede">The easiest way to dismiss an argument about beauty
+    is to call it nostalgia, so this set is chosen to make that difficult. Each
+    pair holds two buildings of the same use at a similar scale, several of the
+    buildings we admire here are modern, and some come from well outside the
+    Western tradition. Every pair states why it is a fair comparison.</p>
 
+    <article class="pair">
+      <div class="pair-head">
+        <h3>Railway station</h3>
+        <span class="label count">1 / 6</span>
+      </div>
+
+      <div class="two">
+        <figure class="exemplar">
+          <div class="gap">
+            <b>Pennsylvania Station</b>
+            <span class="label">Photograph needed</span>
+          </div>
+          <figcaption>
+            <span class="label stamp">
+What we can build            </span>
+            <b>Pennsylvania Station</b>
+            <p class="meta">
+              New York, United States &middot; 1910 &middot; McKim, Mead & White &middot; Beaux-Arts            </p>
+            <p class="cap">A waiting room modelled on the Baths of Caracalla, built by a railway company and open to anyone holding a ticket.</p>
+          </figcaption>
+        </figure>
+        <figure class="contrast">
+          <div class="gap">
+            <b>Pennsylvania Station (rebuilt)</b>
+            <span class="label">Photograph needed</span>
+          </div>
+          <figcaption>
+            <span class="label stamp">
+What we build instead            </span>
+            <b>Pennsylvania Station (rebuilt)</b>
+            <p class="meta">
+              New York, United States &middot; 1968 &middot; Charles Luckman Associates &middot; Corporate modernism            </p>
+            <p class="cap">Vincent Scully on the replacement: one entered the city like a god; one scuttles in now like a rat.</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p class="why"><b>Why this is a fair comparison.</b> The strongest control available: same city, same site, same railway, same purpose, and only the design changed. The 1910 station was demolished in 1963; the replacement concourse opened beneath Madison Square Garden in 1968.</p>
+    </article>
+    <article class="pair">
+      <div class="pair-head">
+        <h3>Town hall</h3>
+        <span class="label count">2 / 6</span>
+      </div>
+
+      <div class="two">
+        <figure class="exemplar">
+          <div class="gap">
+            <b>Säynätsalo Town Hall</b>
+            <span class="label">Photograph needed</span>
+          </div>
+          <figcaption>
+            <span class="label stamp">
+What we can build            </span>
+            <b>Säynätsalo Town Hall</b>
+            <p class="meta">
+              Säynätsalo, Jyväskylä, Finland &middot; 1952 &middot; Alvar Aalto &middot; Nordic modernism            </p>
+            <p class="cap">Modernist in every structural sense, and warm with it: hand-made brick, timber, and a grass courtyard raised above the street.</p>
+          </figcaption>
+        </figure>
+        <figure class="contrast">
+          <div class="gap">
+            <b>Boston City Hall</b>
+            <span class="label">Photograph needed</span>
+          </div>
+          <figcaption>
+            <span class="label stamp">
+What we build instead            </span>
+            <b>Boston City Hall</b>
+            <p class="meta">
+              Boston, United States &middot; 1968 &middot; Kallmann, McKinnell & Knowles &middot; Brutalism            </p>
+            <p class="cap">Garlanded by critics on completion, and voted among the most disliked buildings in America repeatedly since.</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p class="why"><b>Why this is a fair comparison.</b> Both are postwar modernist civic buildings by celebrated architects, sixteen years apart. This pair is here to argue against our own side: the problem is not modernism. Aalto's building is as modern as Boston's, and people are fond of it.</p>
+    </article>
+    <article class="pair">
+      <div class="pair-head">
+        <h3>Social housing</h3>
+        <span class="label count">3 / 6</span>
+      </div>
+
+      <div class="two">
+        <figure class="exemplar">
+          <div class="gap">
+            <b>Het Schip</b>
+            <span class="label">Photograph needed</span>
+          </div>
+          <figcaption>
+            <span class="label stamp">
+What we can build            </span>
+            <b>Het Schip</b>
+            <p class="meta">
+              Amsterdam, Netherlands &middot; 1920 &middot; Michel de Klerk &middot; Amsterdam School            </p>
+            <p class="cap">Municipal housing for dock workers, in sculpted brick, with its own post office and meeting hall. Still lived in a century later.</p>
+          </figcaption>
+        </figure>
+        <figure class="contrast">
+          <div class="gap">
+            <b>Robin Hood Gardens</b>
+            <span class="label">Photograph needed</span>
+          </div>
+          <figcaption>
+            <span class="label stamp">
+What we build instead            </span>
+            <b>Robin Hood Gardens</b>
+            <p class="meta">
+              London, United Kingdom &middot; 1972 &middot; Alison and Peter Smithson &middot; Brutalism            </p>
+            <p class="cap">Streets in the sky for more than two hundred families. Demolition began in 2017, over the objections of architects rather than residents.</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p class="why"><b>Why this is a fair comparison.</b> Both were avant-garde municipal housing schemes by architects at the top of their profession, built as showpieces of what social housing could be. One is protected and well loved by the people in it; the other was demolished while critics campaigned to save it.</p>
+    </article>
+    <article class="pair">
+      <div class="pair-head">
+        <h3>Place of worship</h3>
+        <span class="label count">4 / 6</span>
+      </div>
+
+      <div class="two">
+        <figure class="exemplar">
+          <div class="gap">
+            <b>Sheikh Zayed Grand Mosque</b>
+            <span class="label">Photograph needed</span>
+          </div>
+          <figcaption>
+            <span class="label stamp">
+What we can build            </span>
+            <b>Sheikh Zayed Grand Mosque</b>
+            <p class="meta">
+              Abu Dhabi, United Arab Emirates &middot; 2007 &middot; Islamic            </p>
+            <p class="cap">Completed in 2007, drawing on Mughal, Moorish and Ottoman precedent. Proof that a living tradition can still build at the highest level.</p>
+          </figcaption>
+        </figure>
+        <figure class="contrast">
+          <div class="gap">
+            <b>Liverpool Metropolitan Cathedral</b>
+            <span class="label">Photograph needed</span>
+          </div>
+          <figcaption>
+            <span class="label stamp">
+What we build instead            </span>
+            <b>Liverpool Metropolitan Cathedral</b>
+            <p class="meta">
+              Liverpool, United Kingdom &middot; 1967 &middot; Frederick Gibberd &middot; Modernism            </p>
+            <p class="cap">Built fast and cheaply after Lutyens's vast design was abandoned; leaking within a few years, and the subject of later legal action over the defects.</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p class="why"><b>Why this is a fair comparison.</b> Both are major modern religious buildings by leading designers with national backing. Liverpool has real defenders and its interior light is genuinely admired; it is here because its fabric failed within a few years, which is a cost that arguments about beauty are usually accused of ignoring.</p>
+    </article>
+    <article class="pair">
+      <div class="pair-head">
+        <h3>Railway station</h3>
+        <span class="label count">5 / 6</span>
+      </div>
+
+      <div class="two">
+        <figure class="exemplar">
+          <div class="gap">
+            <b>Kanazawa Station</b>
+            <span class="label">Photograph needed</span>
+          </div>
+          <figcaption>
+            <span class="label stamp">
+What we can build            </span>
+            <b>Kanazawa Station</b>
+            <p class="meta">
+              Kanazawa, Japan &middot; 2005 &middot; Contemporary Japanese            </p>
+            <p class="cap">A glass and steel dome entered through the Tsuzumi-mon, a timber gate shaped after the hand drum used in Noh theatre.</p>
+          </figcaption>
+        </figure>
+        <figure class="contrast">
+          <div class="gap">
+            <b>Kyoto Station</b>
+            <span class="label">Photograph needed</span>
+          </div>
+          <figcaption>
+            <span class="label stamp">
+What we build instead            </span>
+            <b>Kyoto Station</b>
+            <p class="meta">
+              Kyoto, Japan &middot; 1997 &middot; Hiroshi Hara &middot; Modernism            </p>
+            <p class="cap">Some four hundred and seventy metres of steel and glass in Japan's historic capital, built over objections that it would overwhelm the city it serves.</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p class="why"><b>Why this is a fair comparison.</b> Two large stations inserted into historic Japanese cities within a decade of each other, both thoroughly modern, both generously funded. Kanazawa carries its city's tradition into new material; Kyoto was controversial before it opened and remains so.</p>
+    </article>
+    <article class="pair">
+      <div class="pair-head">
+        <h3>Housing district</h3>
+        <span class="label count">6 / 6</span>
+      </div>
+
+      <div class="two">
+        <figure class="exemplar">
+          <div class="gap">
+            <b>Brandevoort</b>
+            <span class="label">Photograph needed</span>
+          </div>
+          <figcaption>
+            <span class="label stamp">
+What we can build            </span>
+            <b>Brandevoort</b>
+            <p class="meta">
+              Helmond, Netherlands &middot; 1997 &middot; Rob Krier &middot; New traditional            </p>
+            <p class="cap">Several thousand homes begun in 1997 in a traditional Dutch idiom, sold at ordinary market prices.</p>
+          </figcaption>
+        </figure>
+        <figure class="contrast">
+          <div class="gap">
+            <b>Bijlmermeer</b>
+            <span class="label">Photograph needed</span>
+          </div>
+          <figcaption>
+            <span class="label stamp">
+What we build instead            </span>
+            <b>Bijlmermeer</b>
+            <p class="meta">
+              Amsterdam, Netherlands &middot; 1975 &middot; Siegfried Nassuth &middot; CIAM modernism            </p>
+            <p class="cap">Some thirteen thousand homes in hexagonal slab blocks, separated by design from traffic, shops and street life. Large parts were demolished from the 1990s.</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p class="why"><b>Why this is a fair comparison.</b> Two large planned residential districts in the same country, both state-backed, both intended as models of their moment. They are roughly thirty years apart, which makes this the weakest control in the set; the note is here to say so rather than hide it.</p>
+    </article>
+  </section>
+
+  <!-- ===== WRITING — add entries under "writing" in config.json ===== -->
+  <section>
+    <p class="label section-label">Writing</p>
+    <h2 class="narrow">The argument at length</h2>
+    <ul class="writing">
+      <li>
+        <a href="https://www.city-journal.org/article/architecture-beauty-liberal-regulation">Architecture, Beauty, and Liberal Regulation</a>
+        <span class="meta">Paul Shakeshaft &middot; City Journal</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== PROVENANCE — do not remove ===== -->
   <footer>
-    <p><strong>Last updated September 29, 2026.</strong> 10 records.</p>
-    <p>Source: <a href="https://example.org/the-dataset">Name of the dataset</a>. What was counted, what was excluded, and what these numbers cannot show.</p>
-    <p>Compiled by Your name.</p>
-    <a class="dl" href="data.csv" download>Download the raw data (CSV)</a>
+    <p><strong>Last updated September 29, 2026.</strong>
+      <span class="tally">6 comparisons, 12 buildings,
+      6 countries, 10 architectural traditions.</span>
+      <span class="tally">12 photographs still to be sourced and cleared.</span>
+    </p>
+    <p>Source: <a href="https://github.com/shakeshaftp/soul-destroying-architecture">Building Beautifully comparison set</a>. Each comparison pairs two buildings of the same use, at a similar scale, and — wherever possible — of a similar era and budget, so that the difference shown is a difference of design rather than of money, age, or upkeep. The pairing note on each comparison states the basis for that pairing. Photographs are chosen to show each building in fair conditions; where a building is widely photographed at its worst, we say so.</p>
+    <p>Compiled by Paul Shakeshaft and John Ketcham, Manhattan Institute. Every photograph is credited to its author beside the building it shows.</p>
+    <a class="dl" href="data.csv" download>Download the full catalogue (CSV)</a>
   </footer>
 
 </div>
